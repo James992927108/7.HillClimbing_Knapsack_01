@@ -1,7 +1,10 @@
+#ifndef READFILE_H_INCLUDED
+#define READFILE_H_INCLUDED
+
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <string>
+
 using namespace std; 
 
 class Readfile
@@ -16,3 +19,4 @@ class Readfile
         vector<int> profits;
         vector<int> optimal_selection;
 };
+#endif

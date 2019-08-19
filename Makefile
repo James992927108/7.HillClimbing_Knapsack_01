@@ -1,22 +1,28 @@
-CXX := g++
-CXXFLAGS := -g -Wall -std=c++11 -O3
-# SRCS := main.cpp customer.cpp node.cpp solution.cpp mocrosl.cpp 
-SRCS := main.cpp Hill_Climbing.cpp Readfile.cpp 
-OBJS := $(SRCS:.cpp=.o)
+DIR_INC = ./include
+DIR_SRC = ./src
+DIR_OBJ = ./obj
+DIR_BIN = ./bin
 
-all: main
-	
-main: $(OBJS)
-	$(CXX) $(CXXFLAGS) -o run $(OBJS)
-	
-$(OBJS) : $(SRCS)
+SRC = $(wildcard *.cpp ${DIR_SRC}/*.cpp)  
+OBJ = $(patsubst %.cpp, ${DIR_OBJ}/%.o, $(notdir ${SRC})) 
+
+TARGET = main
+
+BIN_TARGET = ${DIR_BIN}/${TARGET}
+
+CC = g++
+CFLAGS = -g -std=c++17 -Wall -O2 -I ${DIR_INC}
+
+${BIN_TARGET}: ${OBJ} 
+	$(CC) $(OBJ) -o $@
+
+${DIR_OBJ}/%.o: ${DIR_SRC}/%.cpp 
+	$(CC) $(CFLAGS)  -c  $< -o $@
+
+${DIR_OBJ}/%.o: %.cpp 
+	$(CC) $(CFLAGS)  -c  $< -o $@
+
+.PHONY: clean
 
 clean:
-	rm -rf run $(OBJS)
-
-# help:
-# 	@echo "      =========================================="
-# 	@echo "        If you want to execute this program."
-# 	@echo "        You must follow certain form."
-# 	@echo "        i.e. ./mocrosl [dataset] [run] [iteration]"
-# 	@echo "      =========================================="
+	find ${DIR_OBJ} -name *.o -exec rm -rf {} \;

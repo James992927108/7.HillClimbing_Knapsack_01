@@ -1,14 +1,7 @@
-#include<random>
-#include <ctime>
+#include <random>
 #include "Readfile.h"
+#include "Solution.h"
 using namespace std;
-
-
-struct Solution
-{
-    vector<int> position;
-    int fitness;
-};
 
 class Hill_Climbing
 {

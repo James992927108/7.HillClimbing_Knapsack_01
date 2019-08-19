@@ -1,5 +1,8 @@
 # include "Hill_Climbing.h"
-#include <cstdlib>
+# include "Search_Economics.h"
+# include <ctime>
+# include <string>
+# include <cstdlib>
 
 int main(int argc, char *argv[] ){
     srand((unsigned) time(NULL) );
@@ -12,6 +15,16 @@ int main(int argc, char *argv[] ){
         Hill_Climbing HC(filename, rounds ,iterations);
         HC.Run();
         cout << filename <<" " << HC.count << endl; 
+    }
+    if (string(argv[4]) == "SE")
+    {
+        // int archive_num = 2;
+        int searcher_num = 2;
+        int region_num = 16; // 需要偶數
+        int sample_num = 1;
+        Search_Economics SE(filename, rounds ,iterations, searcher_num, region_num, sample_num);
+        SE.Run();
+        // cout << filename <<" " << HC.count << endl; 
     }
     return 0;
 };
