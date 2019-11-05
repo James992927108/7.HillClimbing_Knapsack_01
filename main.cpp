@@ -19,9 +19,9 @@ int main(int argc, char *argv[] ){
     if (string(argv[4]) == "SE")
     {
         // int archive_num = 2;
-        int searcher_num = 2;
-        int region_num = 16; // 需要偶數
-        int sample_num = 1;
+        int searcher_num = 3;
+        int region_num = 2; // 需要偶數
+        int sample_num = 2;
         Search_Economics SE(filename, rounds ,iterations, searcher_num, region_num, sample_num);
         SE.Run();
         // cout << filename <<" " << HC.count << endl; 
